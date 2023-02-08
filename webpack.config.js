@@ -16,13 +16,13 @@ module.exports = {
   },
   plugins: [
     new ESLintPlugin(),
+    new Dotenv(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Shape Tracker',
+      title: 'Steam API',
       template: './src/index.html',
       inject: 'body'
     }),
-    new Dotenv()
   ],
   module: {
     rules: [

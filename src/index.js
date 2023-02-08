@@ -1,42 +1,43 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import Steam from './steam.js';
 
 // Business Logic
 
-function getWeather(city) {
-  let request = new XMLHttpRequest();
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.API_KEY}`;
-
-  request.addEventListener("loadend", function() {
-    const response = JSON.parse(this.responseText);
-    if (this.status === 200) {
-      printElements(response, city);
-    } else {
-      printError(this, response, city);
-    }
+function searchSteam(search) {
+  let promise = Steam.searchSteam(search);
+  promise.then(function(data) {
+    printElements(data);
+  }, function(errorArray) {
+    printError(errorArray);
   });
-
-  request.open("GET", url, true);
-  request.send();
 }
-
 // UI Logic
 
-function printElements(apiResponse, city) {
-  document.querySelector('#showResponse').innerText = `The humidity in ${city} is ${apiResponse.main.humidity}%. 
-  The temperature in Kelvins is ${apiResponse.main.temp} degrees.`;
+// function printError(error, city) {
+//   document.querySelector('#showResponse').innerText = `There was an error accessing the weather data for ${city}: 
+//   ${error}.`;
+// }
+
+// function printError() {
+//   document.querySelector("#showResults").innerText = `${error[2]}: ${error[0].status} ${error[0].statusText}: ${error[1].message}`;
+// }
+
+function printElements(apiResponse, search) {
+  document.querySelector('#showResponse').innerText = `The example in ${search} is ${apiResponse.main.example}%. 
+  The game is ${apiResponse.main.example}`;
 }
 
-function printError(request, apiResponse, city) {
-  document.querySelector('#showResponse').innerText = `There was an error accessing the weather data for ${city}: ${request.status} ${request.statusText}: ${apiResponse.message}`;
+function printError(request, apiResponse, search) {
+  document.querySelector('#showResponse').innerText = `There was an error accessing the thing for ${search}: ${request.status} ${request.statusText}: ${apiResponse.message}`;
 }
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  const city = document.querySelector('#location').value;
-  document.querySelector('#location').value = null;
-  getWeather(city);
+  const search = document.querySelector('#searchBar').value;
+  document.querySelector('#searchBar').value = null;
+  searchSteam(search);
 }
 
 window.addEventListener("load", function() {
