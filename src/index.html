@@ -6,14 +6,27 @@
   <body>
     <div class="container"> 
       <h1>Joke of the Day</h1>
-      <form id="searchForm">
-        <label for="searchBar">Enter a search term: </label>
-        <input type="text" id="searchBar">
-        <button type="submit" class="btn-success" id="search">Search</button>
-      </form>
+      <div class="jokes-container">
+        <form>
+          <input type="text" id="generate-input">
+          <button id="button">Generate Joke</button>
+        </form>
+        <div class="joke">
+          <p id="joke-content"></p>
+          <span id="joke-topic"></span>
+        </div>
+      </div>
     </div>
-    <div id="showResults">
-    </div>
-
   </body>
 </html>
+
+<!-- <div class="container"> 
+      <h1>Joke of the Day</h1>
+      <div class="jokes-container">
+        <button id = "button" button onclick="generateJoke()">Generate Joke</button>
+        <div class="joke">
+          <p id="joke-content"></p>
+          <span id="joke-topic"></span>
+        </div>
+    </div> -->
+

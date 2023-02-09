@@ -1,22 +1,82 @@
 export default class Joke {
-  static searchJoke(search) {
+  /* eslint-disable no-console */
+  static generateJoke(generate) {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
       const url = `https://v2.jokeapi.dev/joke/Any?safe-mode`;
 
       request.addEventListener("loadend", function () {
         const response = JSON.parse(this.responseText);
-        if(this.status === 200) {
-          resolve([response, search]);
+        console.log(response);
+        if(response.error === false) {
+          resolve([response, generate]);
         } else {
-          reject([this, response, search]);
+          reject([this, response, generate]);
         }
       });
       request.open("GET", url, true);
       request.send();
     });
   }
+  /* eslint-enable no-console*/
 }
 
+// export default class Joke {
+//   let joke = new Joke();
+//   Joke.generateJoke(generate); {
+//     return fetch(`https://v2.jokeapi.dev/joke/Any?safe-mode`)
+//     .then(function(response) {
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} ${response.statusText}`;
+//         throw new Error(errorMessage);
+//       } else {
+//         return response.json();
+//       }
+//     })      
+//     .catch(function(error) {
+//       return error;
+//     });
+// }
+// }
+
+// export default class Joke {
+//   static generateJoke(generate) {
+//     return fetch(`https://v2.jokeapi.dev/joke/Any?safe-mode`)
+//     .then(function(response) {
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} ${response.statusText}`;
+//         throw new Error(errorMessage);
+//       } else {
+//         return response.json();
+//       }
+//     })      
+//     .catch(function(error) {
+//       return error;
+//     });
+// }
+// }
 
 
+
+
+
+
+
+
+// export default class Joke {
+//   static async generateJoke(generate) {
+
+//     try {
+//       const response = await fetch(`https://v2.jokeapi.dev/joke/Any?safe-mode`);
+//       const jsonifiedResponse = await response.json();
+//       if (!response.ok) {
+//         const errorMessage = `${response.status} ${response.statusText}
+//         ${jsonifiedResponse.message}`;
+//         throw new Error(errorMessage);
+//       }
+//       return jsonifiedResponse;
+//     } catch(error) {
+//       return error;
+//     }
+//   }
+// }

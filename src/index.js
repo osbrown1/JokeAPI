@@ -6,41 +6,44 @@ import Joke from './joke.js';
 
 // Business Logic
 
-function searchJoke(search) {
-  let promise = Joke.searchJoke(search);
-  promise.then(function(data) {
-    printElements(data);
-  }, function(errorArray) {
-    printError(errorArray);
+function generateJoke(generate) {
+  Joke.generateJoke(generate)
+  .then(function(response) {
+    if (response instanceof Error) {
+      printElements(response, generate);
+    } else {
+      printError(response, generate);
+    }
   });
 }
+
 // UI Logic
 
-// function printError(error, city) {
-//   document.querySelector('#showResponse').innerText = `There was an error accessing the weather data for ${city}: 
-//   ${error}.`;
-// }
-
-// function printError() {
-//   document.querySelector("#showResults").innerText = `${error[2]}: ${error[0].status} ${error[0].statusText}: ${error[1].message}`;
-// }
-
-function printElements(apiResponse, search) {
-  document.querySelector('#showResponse').innerText = `The example in ${search} is ${apiResponse.main.example}%. 
-  The game is ${apiResponse.main.example}`;
+function printElements(response, generate) {
+  document.querySelector('#joke-content').innerText = `The example in ${generate} is ${response.main.example}. 
+  The joke is ${response[0].main.example}`;
 }
 
-function printError(request, apiResponse, search) {
-  document.querySelector('#showResponse').innerText = `There was an error accessing the thing for ${search}: ${request.status} ${request.statusText}: ${apiResponse.message}`;
+function printError(error, generate) {
+  document.querySelector('#joke-content').innerText = `There was an error accessing the thing for ${generate}: ${error.message}`;
 }
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  const search = document.querySelector('#searchBar').value;
-  document.querySelector('#searchBar').value = null;
-  searchJoke(search);
+  const generate = document.getElementById('generate-input').value;
+  generateJoke(generate);
 }
 
-window.addEventListener("load", function() {
-  document.querySelector('form').addEventListener("submit", handleFormSubmission);
-});
+  window.addEventListener("load", function() {
+  document.getElementById("button").addEventListener("click", handleFormSubmission);
+  });
+
+
+//document.getElementById("button").onclick = generateJoke();
+//let myButton = document.querySelector(".submit");
+//myButton.addEventListener('click', calculation() );
+
+//   const generate = document.querySelector('#joke-container').value;
+//   document.querySelector('#joke-container').value = null;
+//   generateJoke(generate);
+// }

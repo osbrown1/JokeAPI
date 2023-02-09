@@ -1,7 +1,13 @@
 GOAL: Funcionality that allows the user to create jokes using the joke API.
 
 Concerns:
--Using their template to implement the api?
+-why is 'generate' not defined?
 
 
 
+Button is operational, requires generateJoke()
+We do get error response 'There was an error accessing the thing for default: undefined'
+
+async function generateJoke(generate = 'default') { error code: 'There was an error accessing the thing for default: undefined'
+
+async function generateJoke(generate) { error code: 'There was an error accessing the thing for undefined: undefined'
