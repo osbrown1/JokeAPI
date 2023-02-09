@@ -19,7 +19,7 @@ module.exports = {
     new Dotenv(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Steam API',
+      title: 'steam-api',
       template: './src/index.html',
       inject: 'body'
     }),
