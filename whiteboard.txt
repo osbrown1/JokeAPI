@@ -1,26 +1,7 @@
-GOAL: Funcionality that allows the user to search for games by title/genre and recieve suggestions
+GOAL: Funcionality that allows the user to create jokes using the joke API.
 
-Apis we might want to use
-
-Publisher Apis (Has documentation)
-https://partner.steam-api.com/ISteamPublishedItemSearch/ResultSetSummary/v1/?steamid=35456354242243344
-
-Search API
-https://steamapi.xpaw.me/#ISteamUserOAuth/Search
-
-Suggestion Apis
-https://steamapi.xpaw.me/#IDOTA2CustomGames_570/GetSuggestedGames
-https://api.steampowered.com/IDOTA2CustomGames_570/GetPopularGames/v1/
+Concerns:
+-Using their template to implement the api?
 
 
-Search Suggestions
-https://api.steampowered.com/IStoreQueryService/SearchSuggestions/v1/
 
-Recently Played
-https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/
-
-
-Problems:
--CSS not working
--Form submission not working in html
--

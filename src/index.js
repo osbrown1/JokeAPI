@@ -1,13 +1,13 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import Steam from './steam.js';
+import Joke from './joke.js';
 
 
 // Business Logic
 
-function searchSteam(search) {
-  let promise = Steam.searchSteam(search);
+function searchJoke(search) {
+  let promise = Joke.searchJoke(search);
   promise.then(function(data) {
     printElements(data);
   }, function(errorArray) {
@@ -38,7 +38,7 @@ function handleFormSubmission(event) {
   event.preventDefault();
   const search = document.querySelector('#searchBar').value;
   document.querySelector('#searchBar').value = null;
-  searchSteam(search);
+  searchJoke(search);
 }
 
 window.addEventListener("load", function() {
