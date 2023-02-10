@@ -1,17 +1,16 @@
 export default class Joke {
   /* eslint-disable no-console */
-  static generateJoke(generate) {
+  static generateJoke() {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://v2.jokeapi.dev/joke/Any?safe-mode`;
-
+      const url = `https://v2.jokeapi.dev/joke/Any?safe-mode&type=single`;
       request.addEventListener("loadend", function () {
         const response = JSON.parse(this.responseText);
         console.log(response);
         if(response.error === false) {
-          resolve([response, generate]);
+          resolve(response);
         } else {
-          reject([this, response, generate]);
+          reject([this, response]);
         }
       });
       request.open("GET", url, true);
@@ -20,6 +19,28 @@ export default class Joke {
   }
   /* eslint-enable no-console*/
 }
+
+// export default class Joke {
+//   /* eslint-disable no-console */
+//   static generateJoke(generate) {
+//     return new Promise(function (resolve, reject) {
+//       let request = new XMLHttpRequest();
+//       const url = `https://v2.jokeapi.dev/joke/Any?safe-mode&type=single`;
+//       request.addEventListener("loadend", function () {
+//         const response = JSON.parse(this.responseText);
+//         console.log(response);
+//         if(response.error === false) {
+//           resolve([response, generate]);
+//         } else {
+//           reject([this, response, generate]);
+//         }
+//       });
+//       request.open("GET", url, true);
+//       request.send();
+//     });
+//   }
+//   /* eslint-enable no-console*/
+// }
 
 // export default class Joke {
 //   let joke = new Joke();

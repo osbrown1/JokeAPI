@@ -7,21 +7,18 @@ import Joke from './joke.js';
 // Business Logic
 
 function generateJoke(generate) {
-  Joke.generateJoke(generate)
-  .then(function(response) {
-    if (response instanceof Error) {
-      printElements(response, generate);
-    } else {
-      printError(response, generate);
-    }
+  let promise = Joke.generateJoke(generate);
+  promise.then(function(response) {
+    printElements(response, generate);
+  }, function(errorMessage){
+    printError(errorMessage);
   });
 }
 
 // UI Logic
 
-function printElements(response, generate) {
-  document.querySelector('#joke-content').innerText = `The example in ${generate} is ${response.main.example}. 
-  The joke is ${response[0].main.example}`;
+function printElements(response) {
+  document.querySelector('#joke-content').innerText = `The joke is: ${response.joke}`;
 }
 
 function printError(error, generate) {
