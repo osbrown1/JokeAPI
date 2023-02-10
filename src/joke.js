@@ -1,9 +1,9 @@
 export default class Joke {
   /* eslint-disable no-console */
-  static generateJoke() {
+  static generateJoke(generate) {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://v2.jokeapi.dev/joke/Any?safe-mode&type=single`;
+      const url = `https://v2.jokeapi.dev/joke/Any?safe-mode&type=single&contains=${generate}`;
       request.addEventListener("loadend", function () {
         const response = JSON.parse(this.responseText);
         console.log(response);
